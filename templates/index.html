@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TextFlow</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom styles to adjust font size */
+        #outputText {
+            font-size: 15px; /* Smaller font size for output text */
+        }
+
+        /* Container customization */
+        .container {
+            max-width: 380px; /* Restrict the container width to avoid large scaling */
+        }
+
+        .logo {
+            width: 120px; /* Adjust logo size if needed */
+        }
+
+        .btn-sm.small-key {
+            padding: 6px 10px; /* Adjust button padding */
+            font-size: 14px;   /* Adjust font size for buttons */
+        }
+
+        textarea {
+            font-size: 14px; /* Keep font-size small for input text */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container d-flex flex-column align-items-center justify-content-center vh-90">
+        <!-- Logo -->
+        <img src="{{ url_for('static', filename='images/textflow_logo.png') }}" alt="TextFlow Logo" class="logo mb-4">
+
+        <!-- Title -->
+        <h3 class="text-secondary mb-4">TextFlow</h3>
+
+        <!-- Text Input Area -->
+        <div class="form-group w-100">
+            <textarea id="inputText" class="form-control" rows="3" placeholder="Enter your text here..."></textarea>
+        </div>
+
+        <!-- Keyboard -->
+        <div class="keyboard">
+            <!-- Row 1 -->
+            <div class="row mb-2 justify-content-center">
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('A')">A</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('B')">B</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('C')">C</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('D')">D</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('E')">E</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('F')">F</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('G')">G</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('H')">H</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('I')">I</button>
+            </div>
+
+            <!-- Row 2 -->
+            <div class="row mb-2 justify-content-center">
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('J')">J</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('K')">K</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('L')">L</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('M')">M</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('N')">N</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('O')">O</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('P')">P</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('Q')">Q</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('R')">R</button>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="row mb-2 justify-content-center">
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('S')">S</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('T')">T</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('U')">U</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('V')">V</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('W')">W</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('X')">X</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('Y')">Y</button>
+                <button class="btn btn-secondary mx-1 btn-sm small-key" onclick="addLetter('Z')">Z</button>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="row mb-2 justify-content-center" style="margin: 10px;">
+                <button class="btn btn-outline-info mx-2" onclick="clearText()">Effacer</button>
+                <button class="btn btn-outline-info mx-2" onclick="reformulerTexte()">Reformuler</button>
+            </div>
+        </div>
+
+        <!-- Output Section -->
+        <h4 id="outputTitle" class="text-secondary mb-3" style="margin: 20px;">Improved:</h4>
+        <p id="outputText" class="p-3 bg-light rounded w-100"></p>
+    </div>
+
+    <!-- Bootstrap JS and Dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
